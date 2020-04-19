@@ -12,23 +12,25 @@ library(dplyr)
 
 #
 # Get the activity names as a data frame.
-#
 # The column containing the labels will be called Activity, and the activity ID will be ActivityId
 #
+# Returns a dataframe.
+#
+
 get_activity_label_frame <- function() {
   table <- read_tibble_file(get_root_data_file('activity_labels.txt'))  %>%
     rename(ActivityId=V1, Activity=V2)
 }
 
 #
-# Get the activity labels for a set (train or test). appropriately labeled with a textual valued column
+# Get the activity labels for a set (train or test). appropriately labeled with a factor valued column
 # named 'Activity'.
 #
 # set_name: the name of the data set  (train or test)
-# activity_label_frame: a data frame with the activity ID and names
+# activity_label_frame: a data frame with the activity ID and activity names
 #
-# Returns a dataframe with the Activity ID in a numeric column named ActivityId, and the Activity name
-# in a factor column named Activity.
+# Returns a dataframe with the Activity name in a factor column named Activity.
+#
 
 get_activity_labels_for_set <- function(set_name, activity_label_frame) {
   read_tibble_file(get_set_data_file(set_name, 'y'))  %>%
@@ -44,6 +46,7 @@ get_activity_labels_for_set <- function(set_name, activity_label_frame) {
 # set_name: the name of the data set  (train or test)
 #
 # Returns a data frame with the subject IDs.
+#
 
 get_subject_frame <- function(set_name) {
   read_tibble_file(get_set_data_file(set_name, 'subject')) %>%
@@ -53,7 +56,7 @@ get_subject_frame <- function(set_name) {
 #
 # Get the feature column names from the source file.
 #
-# Returns a vector with the feature names.
+# Returns a vector with all the feature names.
 #
 
 get_feature_column_names <- function() {
@@ -65,6 +68,8 @@ get_feature_column_names <- function() {
 #
 # set_name: the name of the data set  (train or test)
 #
+# Returns the feature data frame with appropriately named columns
+#
 
 get_feature_frame <- function(set_name) {
   table <- read_feature_data_set(set_name)
@@ -75,7 +80,7 @@ get_feature_frame <- function(set_name) {
   # Get the indices of the columns we want to keep
   feature_column_names_to_keep <- which(grepl("mean|std", feature_column_names))
   
-  # Only keep columns from the names we want to keep
+  # Only keep data columns from the names we want to keep
   table <- table[,feature_column_names_to_keep]
   
   # rename the columns
@@ -89,6 +94,8 @@ get_feature_frame <- function(set_name) {
 #
 # set_name: the name of the data set  (train or test)
 # activity_label_frame: a data frame with the activity ID and names
+#
+# Returns the tidy data set for one of the data subsets.
 #
 
 get_tidy_data_set <- function(set_name, activity_label_frame) {

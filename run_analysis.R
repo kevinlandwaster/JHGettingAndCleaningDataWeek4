@@ -22,3 +22,5 @@ complete_tidy_data <- rbind(get_tidy_data_set('train', activity_labels),
 grouped_complete_tidy_data <- complete_data %>% 
   group_by(SubjectId, Activity) %>% 
   summarize_all(mean)
+
+write.table(grouped_complete_tidy_data, "group_summary_tidy_data.txt", row.names=FALSE)

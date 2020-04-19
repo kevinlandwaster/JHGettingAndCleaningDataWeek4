@@ -2,6 +2,7 @@
 # read_data.R
 #
 
+#
 # This script contains a collection of functions that read the various data files from the project.
 #
 # The functions are operating system independent and understand nuances of the file formats.
@@ -16,6 +17,9 @@ library(dplyr)
 # This function is operating system independent and will use the proper
 # file separator in file paths.
 #
+# Returns the root file path for the data.
+#
+
 get_root_file_path <- function() {
   paste0(c('data', 'UCI HAR Dataset'), collapse=.Platform$file.sep)
 }
@@ -25,7 +29,12 @@ get_root_file_path <- function() {
 #
 # This function is operating system independent and will use the proper
 # file separator in file paths.
+# 
+# filename: The filename for the requested file
 #
+# Returns the filepath for a particular file in the root folder of the data
+#
+
 get_root_data_file <- function(filename) {
   paste0(c(get_root_file_path(), filename), collapse=.Platform$file.sep)
 }
@@ -39,6 +48,12 @@ get_root_data_file <- function(filename) {
 # This function is operating system independent and will use the proper
 # file separator in file paths.
 #
+# set_name: the name of the data set  (train or test)
+# filename_prefix: The prefix for the desired file
+#
+# Returns the filepath for the requested file.
+#
+
 get_set_data_file <- function(set_name, filename_prefix) {
   # Get the full filename of the desired file
   full_filename = paste0(filename_prefix, '_', set_name, '.txt')
@@ -48,6 +63,10 @@ get_set_data_file <- function(set_name, filename_prefix) {
 
 #
 # Read the feature data set, i.e. the x file, for a particular dataset (train or test)
+#
+# set_name: the name of the data set  (train or test)
+#
+# Returns a dataframe with the feature data
 #
 
 read_feature_data_set <- function(set_name) {
@@ -64,6 +83,10 @@ read_feature_data_set <- function(set_name) {
 # Read a datafile as a tibble dataframe.
 #
 # This is not meant to be used to read the features file, which is in a format that can confuse read.csv.
+#
+# file_path: The file path to the desired file
+#
+# Returns a tibble of the file
 #
 
 read_tibble_file <- function(file_path) {
