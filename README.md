@@ -10,7 +10,7 @@ A full description of the data comes from here: http://archive.ics.uci.edu/ml/da
 
 The original data source for the project is from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip. The data was captured from this source for this current repository on April 14, 2020 at 7:16PM Mountain Time.
 
-The data from the zip file is found in the subfolder `data/`.
+The data from the zip file is found in the subfolder `data/`. The data was unzipped into this folder.
 
 ## R Script Descriptions
 
@@ -25,6 +25,8 @@ When this script completes, it will have defined two variables in the R environm
 `complete_tidy_data`: The merged tidy data.
 
 `grouped_complete_tidy_data`: The `complete_tidy_data` dataset grouped by person and activity, summarized by the mean of all signals.
+
+It also writes the file `group_summary_tidy_data.txt` into the project directory that contains the data from `grouped_complete_tidy_data` in a table file with no row names.
 
 ### tidy.R
 
