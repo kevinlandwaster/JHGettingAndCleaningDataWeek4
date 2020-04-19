@@ -30,7 +30,7 @@ It also writes the file `group_summary_tidy_data.txt` into the project directory
 
 ### tidy.R
 
-This script groups together functions that can create a tidy version of one of the data sets (train or test). The main function here is `get_tidy_data_set()` which uses other functions in this script to get data from various portions of the dataset and tidy them. This script uses functions in `read_data.R` to read the data into R.
+This script groups together functions that can create a tidy version of one of the data sets (train or test). The main function here is `get_tidy_data_set()` which uses other functions in this script to get data from various portions of the dataset and tidy them. This script uses functions in `read_data.R` to read the data into R. The functions in this file name the columns appropriately and takes only the mean and std fields from the original data.
 
 ### read_data.R
 
